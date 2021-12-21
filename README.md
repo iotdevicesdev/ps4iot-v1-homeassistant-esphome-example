@@ -28,7 +28,10 @@ The configuration must include the following entities:
 
 ### Server-side (Home Assistant general config) entities:
 - sensor.battery_voltage_change_per_hour
-
+#### Additional server-sided text state sensors:
+- sensor.nodemcu_ps4iot_battery_level_text_state
+- sensor.nodemcu_ps4iot_charge_text_state
+- sensor.nodemcu_ps4iot_numeric_battery_level_value
 
 ## Install
 

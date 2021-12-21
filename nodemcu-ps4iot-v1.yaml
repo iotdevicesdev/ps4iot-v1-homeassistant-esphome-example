@@ -1,0 +1,66 @@
+esphome:
+  name: nodemcu-ps4iot-v1
+  platform: ESP8266
+  board: nodemcuv2
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: "yourOTApassword"
+
+ota:
+  password: "yourOTApassword"
+ 
+wifi:
+  ssid: "yourSSID"
+  password: "yourSSIDpassword"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Nodemcu-Ps4Iot-V1"
+    password: "ssYO7zyBVJEl"
+
+captive_portal:
+
+switch:
+  - platform: gpio
+    pin: D5
+    name: "NodeMCU PS4IoT Bat Charge Enable"
+    restore_mode: RESTORE_DEFAULT_OFF
+   
+  - platform: shutdown
+    name: "NodeMCU PS4IoT Node Infinite Shutdown"
+  - platform: restart
+    name: "NodeMCU PS4IoT Node Software Restart"
+
+binary_sensor:
+  - platform: gpio
+    name: "NodeMCU PS4IoT RED Charge In progress"
+    pin:
+      number: D1
+      inverted: true
+  - platform: gpio
+    name: "NodeMCU PS4IoT BLUE Charge Completed"
+    pin:
+      number: D2
+      inverted: true
+  - platform: gpio
+    name: "NodeMCU PS4IoT External Power Supply Detector"
+    pin:
+      number: D6
+  - platform: status
+    name: "NodeMCU PS4IoT Node Status"
+
+sensor:
+  - platform: adc
+    pin: A0
+    name: "NodeMCU Battery Voltage Level"
+    icon: "mdi:sine-wave"
+    unit_of_measurement: "V"
+    device_class: "voltage"
+    state_class: "measurement"
+    update_interval: 1s
+    filters:
+      - multiply: 5.0

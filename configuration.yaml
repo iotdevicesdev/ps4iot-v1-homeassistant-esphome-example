@@ -1,0 +1,51 @@
+sensor:
+  - platform: derivative
+    source: sensor.nodemcu_battery_voltage_level #it's a0 adc voltage by my mistake
+    name: Battery Voltage change per hour
+    round: 1
+    unit_time: h # the resulting "unit_of_measurement" will be °C/h if the sensor.temperate has set °C as it's unit
+    time_window: "00:30:00"  # we look at the change over the last half hour
+
+template:
+  - sensor:
+      - name: "Nodemcu PS4IoT Charge Text State"
+        state: >
+          {% if is_state('binary_sensor.nodemcu_ps4iot_external_power_supply_detector', 'off') %}
+            on_int_only
+          {% elif  is_state('switch.nodemcu_ps4iot_bat_charge_enable', 'on') and is_state('binary_sensor.nodemcu_ps4iot_blue_charge_completed', 'on') and is_state('binary_sensor.nodemcu_ps4iot_red_charge_in_progress', 'off') and is_state('binary_sensor.nodemcu_ps4iot_external_power_supply_detector', 'on') %}
+            on_ext_and_int_cc
+          {% elif (is_state('switch.nodemcu_ps4iot_bat_charge_enable', 'on') and is_state('binary_sensor.nodemcu_ps4iot_external_power_supply_detector', 'on') and is_state('binary_sensor.nodemcu_ps4iot_blue_charge_completed', 'off') and is_state('binary_sensor.nodemcu_ps4iot_red_charge_in_progress', 'off')) or ((states('sensor.nodemcu_battery_voltage_level') >= '0' and states('sensor.nodemcu_battery_voltage_level') <= '0.5') and is_state('switch.nodemcu_ps4iot_bat_charge_enable', 'off') and is_state('binary_sensor.nodemcu_ps4iot_external_power_supply_detector', 'on') and is_state('binary_sensor.nodemcu_ps4iot_blue_charge_completed', 'off') and is_state('binary_sensor.nodemcu_ps4iot_red_charge_in_progress', 'off')) %}
+            on_ext_only
+          {% elif  is_state('switch.nodemcu_ps4iot_bat_charge_enable', 'on') and is_state('binary_sensor.nodemcu_ps4iot_blue_charge_completed', 'off') and is_state('binary_sensor.nodemcu_ps4iot_red_charge_in_progress', 'on') and is_state('binary_sensor.nodemcu_ps4iot_external_power_supply_detector', 'on') %}
+            on_ext_and_int_cp
+          {% elif  is_state('switch.nodemcu_ps4iot_bat_charge_enable', 'off') and is_state('binary_sensor.nodemcu_ps4iot_blue_charge_completed', 'off') and is_state('binary_sensor.nodemcu_ps4iot_red_charge_in_progress', 'off') and is_state('binary_sensor.nodemcu_ps4iot_external_power_supply_detector', 'on') %}
+            on_ext_and_int_cdis
+          {% else %}
+            unknown
+          {% endif %}
+  - sensor:
+      - name: "Nodemcu PS4IoT Battery Level Text State"
+        state: >
+          {% if states('sensor.nodemcu_battery_voltage_level') >= '2.8' and states('sensor.nodemcu_battery_voltage_level') <= '2.9' %}
+            empty
+          {% elif states('sensor.nodemcu_battery_voltage_level') >= '2.91' and states('sensor.nodemcu_battery_voltage_level') <= '3' %}
+            critical
+          {% elif states('sensor.nodemcu_battery_voltage_level') >= '3.01' and states('sensor.nodemcu_battery_voltage_level') <= '3.5' %}
+            low
+          {% elif states('sensor.nodemcu_battery_voltage_level') >= '3.51' and states('sensor.nodemcu_battery_voltage_level') <= '3.8' %}
+            half
+          {% elif states('sensor.nodemcu_battery_voltage_level') >= '3.81' and states('sensor.nodemcu_battery_voltage_level') <= '4.23' %}
+            full
+          {% elif states('sensor.nodemcu_battery_voltage_level') >= '0' and states('sensor.nodemcu_battery_voltage_level') <= '0.5' %}
+            absent
+          {% else %}
+            unknown
+          {% endif %}
+  - sensor:
+      - name: "Nodemcu PS4IoT Numeric Battery Level Value"
+        unit_of_measurement: "%"
+        state: "{{ ((states('sensor.nodemcu_battery_voltage_level')|float - 3) / 0.0122)|round(0) }}"
+  - sensor:
+      - name: "Nodemcu PS4IoT Hours current power mode"
+        unit_of_measurement: "Hours"
+        state: "{{ ((as_timestamp(now()) - as_timestamp(states.sensor.nodemcu_ps4iot_charge_text_state.last_changed))|round(0)/3600)|round(2) }}"

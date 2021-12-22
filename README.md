@@ -47,3 +47,9 @@ The configuration must include the following entities:
 On Tindie: https://www.tindie.com/products/iotdev/ps4iot-smart-power-supply-unit-module/
 
 IoT-devices Online Shop: https://iot-devices.com.ua/en/
+
+## PS4IoT_V1 in managed mode under Home Assistant & ESPHome test bed demo video
+
+<a href="https://www.youtube.com/watch?feature=player_embedded&v=rUE2VASIHns" target="_blank">
+ <img src="https://img.youtube.com/vi/rUE2VASIHns/mqdefault.jpg" alt="Watch the video" border="10" />
+</a>

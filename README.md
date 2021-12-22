@@ -1,7 +1,11 @@
-# ps4iot-v1-homeassistant-esphome-example
-PS4IoT_V1 Smart Power Supply Unit Module. Under Home Assistant server with ESPHome plugin basic PS4IoT_V1 setup example in "managed by MCU mode".
+# PS4IoT_V1 Home Assistant with ESPHome setup example
+PS4IoT_V1 Smart Power Supply Unit Module is tested under Home Assistant server with ESPHome plugin specially deployed test environment. The PS4IoT_V1 demo setup is placed in "managed by MCU mode" using ESP8266 as the MCU.
 
 Hackaday Project Page: https://hackaday.io/project/183099-ps4iotv1-smart-power-supply-unit-module
+
+
+![PS4IoT_V1 Ports](https://github.com/iotdevicesdev/ps4iot-v1-homeassistant-esphome-example/blob/main/PS4IoT_V1_Quick_Facts_Sheet_Ports.jpg)
+
 
 ## What's in example files
 
@@ -14,6 +18,9 @@ In addition, you must add a synthetic battery voltage rate sensor to the Home As
 
 - configuration.yaml - contains Home Assitant server-side configuration script example
 
+## PS4IoT in managed by MCU mode setup example
+
+![Managed mode setup example](https://github.com/iotdevicesdev/ps4iot-v1-homeassistant-esphome-example/blob/main/PS4IoT_V1_Quick_Facts_Sheet_ManagedMode-SetupExample.jpg)
 
 ### Node-side (ESPHome plugin node config) entities:
 
@@ -41,14 +48,16 @@ The configuration must include the following entities:
 4. Compile and use
 5. Also you may add server-aided additional state sensors using configuration.yaml file as in examples.
 
+## Resulting Home Assistant dashboard basic widget example
+![HA Dashboard Widget](https://github.com/iotdevicesdev/ps4iot-v1-homeassistant-esphome-example/blob/main/PS4IoT_V1_Main_States_Widget_HA_Dashboard_SetupExample.jpg)
 
-## Where to buy PS4IoT_V1 Smart Power Supply Unit Module: 
+## Buy PS4IoT_V1 Smart Power Supply Unit Module: 
 
 On Tindie: https://www.tindie.com/products/iotdev/ps4iot-smart-power-supply-unit-module/
 
 IoT-devices Online Shop: https://iot-devices.com.ua/en/
 
-## PS4IoT_V1 in managed mode under Home Assistant & ESPHome test bed demo video
+## Watch PS4IoT_V1 under Home Assistant / ESPHome demo video
 
 <a href="https://www.youtube.com/watch?feature=player_embedded&v=rUE2VASIHns" target="_blank">
  <img src="https://img.youtube.com/vi/rUE2VASIHns/mqdefault.jpg" alt="Watch the video" border="10" />

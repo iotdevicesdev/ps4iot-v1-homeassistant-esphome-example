@@ -6,7 +6,10 @@ Hackaday Project Page: https://hackaday.io/project/183099-ps4iotv1-smart-power-s
 
 ![PS4IoT_V1 Ports](https://github.com/iotdevicesdev/ps4iot-v1-homeassistant-esphome-example/blob/main/PS4IoT_V1_Quick_Facts_Sheet_Ports.jpg)
 
-
+## Documentation
+- Product description https://iot-devices.com.ua/en/product/ps4iot-smart-power-module/
+- Datasheet https://iot-devices.com.ua/wp-content/uploads/2021/12/ps4iot_v1-power-supply-unit-description-eng.pdf
+- Quick Fact Sheet https://iot-devices.com.ua/wp-content/uploads/2021/12/en-ps4iot_v1-quick-facts-sheet.pdf
 ## What's in example files
 
 To enable the module in its full capacity, you need to create a yaml configuration script in ESPHome.

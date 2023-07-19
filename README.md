@@ -3,6 +3,8 @@
 # PS4IoT_V1 Home Assistant with ESPHome setup example
 PS4IoT_V1 Smart Power Supply Unit Module is tested under Home Assistant server with ESPHome plugin specially deployed test environment. The PS4IoT_V1 demo setup is placed in "managed by MCU mode" using ESP8266 as the MCU.
 
+<a href="https://www.tindie.com/stores/iotdev/?ref=offsite_badges&utm_source=sellers_iotdevices&utm_medium=badges&utm_campaign=badge_large"><img src="https://d2ss6ovg47m0r5.cloudfront.net/badges/tindie-larges.png" alt="I sell on Tindie" width="200" height="104"></a>
+
 Hackaday Project Page: https://hackaday.io/project/183099-ps4iotv1-smart-power-supply-unit-module
 
 
